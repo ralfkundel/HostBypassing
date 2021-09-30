@@ -4,7 +4,7 @@ For detailed explanation: [Paper](https://www.kom.tu-darmstadt.de/papers/KEM+21.
 
 The project consists of two parts:
 1. a FPGA project. see: [FPGA readme](FpgaProject/Readme.md)
-2. a modified version of DPDK for enabling host bypassing. coming soon!
+2. a modified version of DPDK for enabling host bypassing: [DPDK readme](DpdkProject/Readme.md)
 
 ## General Workflow
 1. build the FPGA project according to its readme and load the FPGA design on the FPGA. see: [FPGA readme](FpgaProject/Readme.md)
@@ -17,6 +17,7 @@ We recomend the use of the IGB_UIO kernel module which wille be compiled by the 
 For loading the kernel Module (assuming the FPGA PCIe bus address to be 0000:65:00.0):
 ```
 echo "10ee 9038" > /sys/bus/pci/drivers/igb_uio/new_id
+# if this is not working, execute the steps in the dpdk readme first to load the igb_uio kernel module
 ```
 and if needed for unbinding/rebinding:
 ```
@@ -28,7 +29,3 @@ echo -n 0000:65:00.0 > /sys/bus/pci/drivers/igb_uio/bind
 Currently, the following Network Interface Cards are supported:
 
 * Intel 82599
-
-
-## Release Plan:
-Note: Further documentation will follow in the next weeks as well as DPDK sample code.
