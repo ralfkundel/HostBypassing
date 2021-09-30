@@ -255,7 +255,7 @@ set_property range 4K [get_bd_addr_segs {xdma_0/M_AXI_B/SEG_axi_bram_ctrl_rx_rin
 set_property offset 0x00100000 [get_bd_addr_segs {xdma_0/M_AXI_B/SEG_axi_bram_ctrl_rx_ring_Mem0}]
 
 assign_bd_address [get_bd_addr_segs {axi_bram_ctrl_tx_buffer/S_AXI/Mem0 }]
-set_property offset 0xC0080000 [get_bd_addr_segs {xdma_0/M_AXI_B/SEG_axi_bram_ctrl_tx_buffer_Mem0}]
+set_property offset 0x00080000 [get_bd_addr_segs {xdma_0/M_AXI_B/SEG_axi_bram_ctrl_tx_buffer_Mem0}]
 set_property range 512K [get_bd_addr_segs {xdma_0/M_AXI_B/SEG_axi_bram_ctrl_tx_buffer_Mem0}]
 
 assign_bd_address [get_bd_addr_segs {axi_bram_ctrl_tx_ring/S_AXI/Mem0 }]

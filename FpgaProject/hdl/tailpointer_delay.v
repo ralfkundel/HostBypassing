@@ -80,7 +80,7 @@ always @(*) begin
         end
         if((time_cnt == MAX_TIME_CNT && next_packet_cnt!=0) || next_packet_cnt == MAX_PACKET_CNT) begin
             next_state = STATE_WRITE;
-            m_pcie_write_o = 1'b1;   
+            //m_pcie_write_o = 1'b1;   
             next_s_pcie_write_ack_o = 1'b0;
         end
     end
