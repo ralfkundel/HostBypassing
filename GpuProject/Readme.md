@@ -10,7 +10,6 @@
 ```
 cd CudaSrc
 make
-
 ```
 
 ## Run
