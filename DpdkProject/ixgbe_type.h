@@ -4202,6 +4202,7 @@ struct ixgbe_hw {
 	bool custom_addr_enable;
 	uint64_t custom_rx_desc_addr;
 	uint64_t custom_tx_desc_addr;
+	uint64_t custom_desc_addr_offset;
 };
 
 #define ixgbe_call_func(hw, func, params, error) \

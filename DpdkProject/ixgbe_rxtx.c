@@ -2,6 +2,7 @@
  * Copyright(c) 2010-2016 Intel Corporation.
  * Copyright 2014 6WIND S.A.
  */
+//Modified by: Kadir Eryigit, Leonard Anderweit, Ralf Kundel
 
 #include <sys/queue.h>
 
@@ -5076,7 +5077,10 @@ ixgbe_dev_rx_init(struct rte_eth_dev *dev)
 		/* Setup the Base and Length of the Rx Descriptor Rings */
 		//bus_addr = rxq->rx_ring_phys_addr;
 		if(hw->custom_addr_enable)  //HOST BYPASSING
-			bus_addr = hw->custom_rx_desc_addr;
+			if(rxq->reg_idx>0)	//multi ring support
+				bus_addr = hw->custom_rx_desc_addr + rxq->reg_idx * hw->custom_desc_addr_offset;
+			else
+				bus_addr = hw->custom_rx_desc_addr;
 		else
 			bus_addr = rxq->rx_ring_phys_addr;
 		IXGBE_WRITE_REG(hw, IXGBE_RDBAL(rxq->reg_idx),
@@ -5189,7 +5193,10 @@ ixgbe_dev_tx_init(struct rte_eth_dev *dev)
 		txq = dev->data->tx_queues[i];
 
 		if(hw->custom_addr_enable) //HOST Bypassing
-			bus_addr = hw->custom_tx_desc_addr;
+			if(txq->reg_idx>0)	//multi ring support
+				bus_addr = hw->custom_tx_desc_addr + txq->reg_idx * hw->custom_desc_addr_offset;
+			else
+				bus_addr = hw->custom_tx_desc_addr;
 		else
 			bus_addr = txq->tx_ring_phys_addr;
 		IXGBE_WRITE_REG(hw, IXGBE_TDBAL(txq->reg_idx),
